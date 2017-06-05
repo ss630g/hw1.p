@@ -347,7 +347,7 @@ void render(Game *game)
 
 
     Shape *b;
-    glColor3ub(100,50,50);
+    glColor3ub(100,20,70);
     b = &game->box;
     glPushMatrix();
     glTranslatef(b->center.y-100, b->center.x-50, b->center.z);
@@ -366,7 +366,7 @@ void render(Game *game)
 
     Shape *g;
     //  glColor3ub(90,140,90);
-    glColor3ub(100,50,50);
+    glColor3ub(125,50,100);
     g = &game->box;
     glPushMatrix();
     glTranslatef(g->center.y-10, g->center.x-120, g->center.z);
@@ -381,7 +381,7 @@ void render(Game *game)
     glPopMatrix(); 
 
     Shape *o;
-    glColor3ub(100,50,50);
+    glColor3ub(10,100,70);
     o = &game->box;
     glPushMatrix();
     glTranslatef(o->center.y+140, o->center.x-190, o->center.z);
@@ -397,7 +397,7 @@ void render(Game *game)
 
     Shape *s;
     //	glColor3ub(90,140,90);
-    glColor3ub(100,50,50);	
+    glColor3ub(70,100,50);	
     s = &game->box;
     glPushMatrix();
     glTranslatef(s->center.x, s->center.y, s->center.z);
@@ -413,7 +413,7 @@ void render(Game *game)
 
 
     Shape *c;
-    glColor3ub(100,50,50);
+    glColor3ub(45,50,130);
     c = &game->box;
     glPushMatrix();
     glTranslatef(c->center.x+130, c->center.y-60, c->center.z);
