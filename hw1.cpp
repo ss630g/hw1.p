@@ -44,7 +44,7 @@
 #define WINDOW_WIDTH  800
 #define WINDOW_HEIGHT 600
 
-const int MAX_PARTICLES = 100000;
+const int MAX_PARTICLES = 100;
 #define GRAVITY 0.1
 
 //X Windows variables
@@ -336,7 +336,7 @@ void movement(Game *game)
 	}
     }
 }
-
+/*
 void render(Game *game)
 {
     float w, h;
@@ -426,7 +426,7 @@ void render(Game *game)
     glVertex2i( w,-h);
     glEnd();
     glPopMatrix();
-
+*/
     /* float tp = 2.0f * 3.14159f;
        int t = 20;
 
@@ -458,7 +458,7 @@ void render(Game *game)
 
 
     //draw all particles here
-    for (int i=0; i<game->n ; i++) {
+/*    for (int i=0; i<game->n ; i++) {
 	Vec *c = &game->particle[i].s.center;
 	glPushMatrix();
 	glColor3ub( 170 , 160 , 170);
@@ -474,6 +474,6 @@ void render(Game *game)
 	glPopMatrix();
     }
 }
-
+*/
 
 
