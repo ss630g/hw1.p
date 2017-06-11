@@ -44,7 +44,7 @@
 #define WINDOW_WIDTH  800
 #define WINDOW_HEIGHT 600
 
-const int MAX_PARTICLES = 100;
+const int MAX_PARTICLES = 100000;
 #define GRAVITY 0.1
 
 //X Windows variables
@@ -71,7 +71,7 @@ struct Particle {
 
 class Game {
     public:
-	Shape box, circle;
+	Shape box[5], circle;
 	Particle particle[MAX_PARTICLES];
 	int n;
 	Game() {
@@ -104,10 +104,12 @@ int main(void)
        game.circle.center.y = 500 - 5*60;
        */
     //declare a box shape
-    game.box.width = 100;
-    game.box.height = 10;
-    game.box.center.x = 120 + 5*65;
-    game.box.center.y = 500 - 5*60;
+    for (int i = 0; i < 5; i++) {
+        game.box[i].width = 100;
+        game.box[i].height = 10;
+        game.box[i].center.x = 120 + 5*65;
+        game.box[i].center.y = 500 - 5*60;
+    }
 
     //start animation
     while (!done) {
@@ -256,76 +258,65 @@ void movement(Game *game)
     if (game->n <= 0)
 	return;
     for(int i = 0; i<game->n; i++) {
-	p = &game->particle[i];
-	p->velocity.y -= GRAVITY;
-	p->s.center.x += p->velocity.x;
-	p->s.center.y += p->velocity.y;
+        p = &game->particle[i];
+	    p->velocity.y -= GRAVITY;
+	    p->s.center.x += p->velocity.x;
+	    p->s.center.y += p->velocity.y;
 
 	//check for collision with shapes...
-	Shape *s = &game->box;
-	if(p->s.center.y < s->center.y + s->height &&
-		p->s.center.x > s->center.x - s->width &&
-		p->s.center.x < s->center.x + s->width) 
-	{
 
-	    p->s.center.y = s->center.y + s->height;
-	    p->velocity.y = -p->velocity.y;
-	    p->velocity.y *= 0.5;
-
-	}
-
-
-
-	Shape *u = &game->box;
-	if(p->s.center.y < u->center.y + 199 + u->height &&
-		p->s.center.x > u->center.x - 347 - u->width &&
-		p->s.center.x < u->center.x - 347 + u->width) 
-	{
-
-	    p->s.center.y = u->center.y + 199 + u->height;
-	    p->velocity.y = -p->velocity.y;
-	    p->velocity.y *= 0.5;
-
-	}
-
-	Shape *g = &game->box;
-	if(p->s.center.y < g->center.y + 125 + g->height &&
-		p->s.center.x > g->center.x - 253 - g->width &&
-		p->s.center.x < g->center.x - 253 + g->width)
-	{
-
-	    p->s.center.y = g->center.y + 125 + g->height;
-	    p->velocity.y = -p->velocity.y;
-	    p->velocity.y *= 0.5;
-
-	}
+        for (int index = 0; index < 5; index++) {
+            
+            Shape *s = &game->box[index];
+	        if(p->s.center.y < s->center.y + s->height &&
+		    p->s.center.x > s->center.x - s->width &&
+		    p->s.center.x < s->center.x + s->width)
+            {
+                p->s.center.y = s->center.y + s->height;
+	            p->velocity.y = -p->velocity.y;
+	            p->velocity.y *= 0.5;
+            }
 
 
-	Shape *h = &game->box;
-	if(p->s.center.y < h->center.y + 55 + h->height &&
-		p->s.center.x > h->center.x - 104 - h->width &&
-		p->s.center.x < h->center.x - 104 + h->width)
-	{
+            if(p->s.center.y < s->center.y + 199 + s->height &&
+		    p->s.center.x > s->center.x - 347 - s->width &&
+		    p->s.center.x < s->center.x - 347 + s->width) 
+	        {
 
-	    p->s.center.y = h->center.y + 55 + h->height;
-	    p->velocity.y = -p->velocity.y;
-	    p->velocity.y *= 0.5;
+	            p->s.center.y = s->center.y + 199 + s->height;
+	            p->velocity.y = -p->velocity.y;
+	            p->velocity.y *= 0.5;
+            }
 
-	}
+	        if(p->s.center.y < s->center.y + 125 + s->height &&
+		    p->s.center.x > s->center.x - 253 - s->width &&
+		    p->s.center.x < s->center.x - 253 + s->width)
+            {
+                p->s.center.y = s->center.y + 125 + s->height;
+	            p->velocity.y = -p->velocity.y;
+	            p->velocity.y *= 0.5;
+            }
 
 
+	        if(p->s.center.y < s->center.y + 55 + s->height &&
+		    p->s.center.x > s->center.x - 104 - s->width &&
+		    p->s.center.x < s->center.x - 104 + s->width)
+	        {
+	            p->s.center.y = s->center.y + 55 + s->height;
+	            p->velocity.y = -p->velocity.y;
+	            p->velocity.y *= 0.5;
+            }
 
-	Shape *j = &game->box;
-	if(p->s.center.y < j->center.y + -60 + h->height &&
-		p->s.center.x > j->center.x + 130 - h->width &&
-		p->s.center.x < j->center.x + 130 + h->width)
-	{
-
-	    p->s.center.y = j->center.y + -60 + h->height;
-	    p->velocity.y = -p->velocity.y;
-	    p->velocity.y *= 0.5;
-
-	}
+            
+	        if(p->s.center.y < s->center.y + -60 + s->height &&
+		    p->s.center.x > s->center.x + 130 - s->width &&
+		    p->s.center.x < s->center.x + 130 + s->width)
+	        {
+                p->s.center.y = s->center.y + -60 + s->height;
+	            p->velocity.y = -p->velocity.y;
+	            p->velocity.y *= 0.5;
+            }
+        }
 
 
 	//check for off-screen
